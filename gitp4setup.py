@@ -75,7 +75,7 @@ View:
             os.makedirs(client_dir)
 
         self.__store_p4config(client_dir)
-        self.__call_p4client(template_content)
+        self.__call_p4client(p4client_content)
 
     def __store_p4config(self, dir):
         with open(os.path.join(dir, '.p4config'), 'w+') as file:

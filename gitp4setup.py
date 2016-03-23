@@ -66,7 +66,7 @@ View:
         self.__create_git_p4_client()
 
     def __create_git_p4_client(self):
-        p4client_content = Template(GitP4.P4CLIENT_SPEC_TEMPLATE).safe_substitute(self.__p4client_spec_vars)
+        p4client_content = Template(GitP4Workspace.P4CLIENT_SPEC_TEMPLATE).safe_substitute(self.__p4client_spec_vars)
 
         client_dir = self.__p4client_spec_vars['root_dir']
 

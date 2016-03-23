@@ -71,7 +71,7 @@ View:
 
         client_dir = self.__p4client_spec_vars['root_dir']
 
-        if not self.__args.update:
+        if not os.path.exists(client_dir):
             os.makedirs(client_dir)
 
         self.__store_p4config(client_dir)
@@ -94,7 +94,7 @@ View:
     def __create_git_workspace(self):
         git_dir = self.__p4client_spec_vars['git_root_dir']
 
-        if not self.__args.update:
+        if not os.path.exists(git_dir):
             os.makedirs(git_dir)
 
         self.__store_p4config(git_dir)
@@ -113,7 +113,6 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="CLI tool for creating git-p4 workspaces.")
     parser.add_argument("P4CLIENT", action="store", help="Name of the Perforce client (eg. dev-mystream-myname-myhost)")
     parser.add_argument("P4DEPOT", action="store", help="Name of th Perforce depot (eg. //depot-foo/dev-mystream")
-    parser.add_argument("--update", action="store_true", help="Update existing local Git repository and Perforce workspace.")
     parser.add_argument("--verbose", action="store_true", help="Increase verbosity")
 
     args = parser.parse_args()

@@ -62,6 +62,7 @@ View:
                                      'git_root_dir': os.path.join(current_work_dir, 'git', args.P4CLIENT) }
 
     def create(self):
+        # TODO: do p4 login
         self.__create_git_workspace()
         self.__create_git_p4_client()
 
@@ -102,7 +103,7 @@ View:
                    self.__p4client_spec_vars['depot'] + '/...@all',
                    self.__p4client_spec_vars['git_root_dir']], stdout=PIPE, stderr=STDOUT)
 
-        # TODO: Check whether git p4 is support
+        # TODO: Check whether git p4 is supported
         # TODO: Check whether git p4 clone was successful
         for line in p.stdout:
             _logger.info(line.strip())

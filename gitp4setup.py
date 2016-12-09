@@ -82,10 +82,10 @@ View:
             file.write("P4CLIENT=" + self.__p4client_spec_vars['p4client'] + "\n")
 
     def __call_p4client(self, p4client_spec):
-        _logger.debug(p4client_spec)
+        _logger.debug("p4 client spec: " + p4client_spec)
         p = Popen(['p4', 'client', '-i'], stdout=PIPE, stdin=PIPE, stderr=STDOUT)
-        stdout = p.communicate(input=p4client_spec)[0]
-        _logger.debug(stdout)
+        stdout, stderr = p.communicate(input=p4client_spec)
+        _logger.debug(stdout.decode('utf-8'))
 
     def __replace(self, content, key, value):
         _logger.debug("Replace " + key + " with " + value)
@@ -106,7 +106,7 @@ View:
         # TODO: Check whether git p4 is supported
         # TODO: Check whether git p4 clone was successful
         for line in p.stdout:
-            _logger.info(line.strip())
+            _logger.info(line.strip().decode())
 
 if __name__ == '__main__':
 
